@@ -13,6 +13,7 @@ import PlusIcon from "/assets/icon-plus.svg";
 import MinusIcon from "/assets/icon-minus.svg";
 import { StyledContainer } from "./components/styled/Container";
 import { ReplyComment } from "./components/styled/ReplyComment";
+import { CommentWrapper } from "./components/styled/CommentWrapper";
 
 const theme = {
   colors: {
@@ -126,41 +127,44 @@ const Comment = ({ data, loggedInUser }) => {
   const { user, createdAt, replies } = data;
   console.log(replies);
   return (
-    <StyledComment>
-      <div className="user-data">
-        <img
-          src={user.image.webp}
-          alt="Commenter´s profile picture"
-        />
-        <h1>{user.username}</h1>
-        {loggedInUser.username === user.username && <h4>you</h4>}
-        <span>{createdAt}</span>
-      </div>
-      <div className="comment-actions">
-        {/* If the comment is NOT from the signed in user */}
-        {loggedInUser.username != user.username ? (
-          <button className="action-btn reply">
-            <img src="assets/icon-reply.svg" />
-            Reply
-          </button>
-        ) : (
-          <>
-            <button className="action-btn delete">
-              <img src="assets/icon-delete.svg" />
-              Delete
+    <CommentWrapper>
+      <StyledComment>
+        <div className="user-data">
+          <img src={user.image.webp} alt="Commenter´s profile picture" />
+          <h1>{user.username}</h1>
+          {loggedInUser.username === user.username && <h4>you</h4>}
+          <span>{createdAt}</span>
+        </div>
+        <div className="comment-actions">
+          {/* If the comment is NOT from the signed in user */}
+          {loggedInUser.username != user.username ? (
+            <button className="action-btn reply">
+              <img src="assets/icon-reply.svg" />
+              Reply
             </button>
-            <button className="action-btn edit">
-              <img src="assets/icon-edit.svg" />
-              Edit
-            </button>
-          </>
-        )}
-      </div>
-      <p>{data.content}</p>
-      <VoteButton comment={data} />
-
-      {replies && replies.map((reply) => <>Reply comment here</>)}
-    </StyledComment>
+          ) : (
+            <>
+              <button className="action-btn delete">
+                <img src="assets/icon-delete.svg" />
+                Delete
+              </button>
+              <button className="action-btn edit">
+                <img src="assets/icon-edit.svg" />
+                Edit
+              </button>
+            </>
+          )}
+        </div>
+        <p>{data.content}</p>
+        <VoteButton comment={data} />
+      </StyledComment>
+      {replies &&
+        replies.map((reply) => (
+          <ReplyComment>
+            <Comment data={reply} loggedInUser={MOCK_DATA.currentUser} />
+          </ReplyComment>
+        ))}
+    </CommentWrapper>
   );
 };
 

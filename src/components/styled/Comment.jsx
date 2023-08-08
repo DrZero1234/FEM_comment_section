@@ -8,6 +8,7 @@ export const StyledComment = styled.div`
     "vote content ."
     ". content .";
   grid-template-rows: auto;
+  grid-column: 1/3;
   gap: 1em;
   padding: 1.5em;
   background-color: ${({ theme }) => theme.colors.neutral_1000};

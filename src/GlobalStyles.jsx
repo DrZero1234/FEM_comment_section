@@ -47,7 +47,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
-    @media (prefers-reduced-motion: reduce) {
+    @media (prefers-reduced-fmotion: reduce) {
     html:focus-within {
         scroll-behavior: auto;
     }
@@ -68,11 +68,11 @@ export const GlobalStyle = createGlobalStyle`
         background-color: ${({ theme }) => theme.colors.neutral_800}
     }
 
-    main {
-        display: grid;
-        min-height: 100vh;
-        place-content: center
+    @media (min-width: 30em) {
+        body{
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+        }
     }
-
-
 `;
