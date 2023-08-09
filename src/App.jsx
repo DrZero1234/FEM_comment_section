@@ -14,6 +14,7 @@ import MinusIcon from "/assets/icon-minus.svg";
 import { StyledContainer } from "./components/styled/Container";
 import { ReplyComment } from "./components/styled/ReplyComment";
 import { CommentWrapper } from "./components/styled/CommentWrapper";
+import { StyledCommentInput } from "./components/styled/CommentInput";
 
 const theme = {
   colors: {
@@ -119,6 +120,7 @@ const Container = ({ data }) => {
       {comments.map((comment) => (
         <Comment data={comment} loggedInUser={currentUser} />
       ))}
+      <CommentInput action="" currentUser={currentUser} />
     </StyledContainer>
   );
 };
@@ -130,7 +132,10 @@ const Comment = ({ data, loggedInUser }) => {
     <CommentWrapper>
       <StyledComment>
         <div className="user-data">
-          <img src={user.image.webp} alt="Commenter´s profile picture" />
+          <img
+            src={user.image.webp}
+            alt="Commenter´s profile picture"
+          />
           <h1>{user.username}</h1>
           {loggedInUser.username === user.username && <h4>you</h4>}
           <span>{createdAt}</span>
@@ -161,14 +166,27 @@ const Comment = ({ data, loggedInUser }) => {
       {replies &&
         replies.map((reply) => (
           <ReplyComment>
-            <Comment data={reply} loggedInUser={MOCK_DATA.currentUser} />
+            <Comment
+              data={reply}
+              loggedInUser={MOCK_DATA.currentUser}
+            />
           </ReplyComment>
         ))}
     </CommentWrapper>
   );
 };
 
-const CommentInput = ({ action }) => {};
+const CommentInput = ({ action, currentUser }) => {
+  return (
+    <StyledCommentInput>
+      {currentUser && (
+        <img src={currentUser.image.webp} alt="Profile Picture" />
+      )}
+      <textarea placeholder="Add a comment..." rows={5} />
+      <button>Send</button>
+    </StyledCommentInput>
+  );
+};
 
 const VoteButton = ({ comment }) => {
   const { score } = comment;

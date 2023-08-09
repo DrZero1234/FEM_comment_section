@@ -4,8 +4,7 @@ export const StyledVoteButton = styled.div`
   grid-area: vote;
   display: flex;
   flex-direction: column;
-  gap: 1em;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 0.5em;
   border-radius: 1em;
@@ -26,5 +25,7 @@ export const StyledVoteButton = styled.div`
     flex-direction: row;
     width: max-content;
     padding: 1em;
+    gap: 1em;
+    justify-content: space-between;
   }
 `;

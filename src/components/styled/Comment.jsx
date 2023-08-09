@@ -7,7 +7,6 @@ export const StyledComment = styled.div`
     "vote user-data buttons"
     "vote content ."
     ". content .";
-  grid-template-rows: auto;
   grid-column: 1/3;
   gap: 1em;
   padding: 1.5em;

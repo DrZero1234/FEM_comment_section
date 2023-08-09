@@ -5,5 +5,6 @@ export const StyledContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 1.5em;
-  max-width: 75em;
+  max-width: 65em;
+  margin: 2em 0em;
 `;
