@@ -24,11 +24,6 @@ export const StyledCommentInput = styled(StyledComment)`
     text-transform: uppercase;
   }
 
-  button:hover {
-    opacity: 0.5;
-    cursor: pointer;
-  }
-
   @media (max-width: ${({ theme }) => theme.mobile_size}) {
     grid-template-areas:
       "input input"

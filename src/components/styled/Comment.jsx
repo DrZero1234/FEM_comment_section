@@ -35,7 +35,7 @@ export const StyledComment = styled.div`
   }
 
   // Content text
-  p {
+  .content-wrapper {
     grid-area: content;
     line-height: 1.5rem;
   }

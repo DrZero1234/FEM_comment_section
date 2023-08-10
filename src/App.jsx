@@ -3,7 +3,9 @@ import viteLogo from "/vite.svg";
 import { GlobalStyle } from "./GlobalStyles";
 import { ThemeProvider } from "styled-components";
 import data from "./utils/data.json";
+import { Container } from "./components/Container";
 
+import { v4 as uuidv4 } from "uuid";
 //Comment import
 import { StyledComment } from "./components/styled/Comment";
 
@@ -109,113 +111,21 @@ const theme = {
 }
 */
 
-const MOCK_COMMENT = [JSON.parse(JSON.stringify(data))][0].comments;
-const MOCK_DATA = [JSON.parse(JSON.stringify(data))][0];
-
-const Container = ({ data }) => {
-  const { comments, currentUser } = data;
-  console.log(comments);
-  return (
-    <StyledContainer>
-      {comments.map((comment) => (
-        <Comment data={comment} loggedInUser={currentUser} />
-      ))}
-      <CommentInput action="" currentUser={currentUser} />
-    </StyledContainer>
-  );
-};
-
-const Comment = ({ data, loggedInUser }) => {
-  const { user, createdAt, replies } = data;
-  console.log(replies);
-  return (
-    <CommentWrapper>
-      <StyledComment>
-        <div className="user-data">
-          <img
-            src={user.image.webp}
-            alt="Commenter´s profile picture"
-          />
-          <h1>{user.username}</h1>
-          {loggedInUser.username === user.username && <h4>you</h4>}
-          <span>{createdAt}</span>
-        </div>
-        <div className="comment-actions">
-          {/* If the comment is NOT from the signed in user */}
-          {loggedInUser.username != user.username ? (
-            <button className="action-btn reply">
-              <img src="assets/icon-reply.svg" />
-              Reply
-            </button>
-          ) : (
-            <>
-              <button className="action-btn delete">
-                <img src="assets/icon-delete.svg" />
-                Delete
-              </button>
-              <button className="action-btn edit">
-                <img src="assets/icon-edit.svg" />
-                Edit
-              </button>
-            </>
-          )}
-        </div>
-        <p>{data.content}</p>
-        <VoteButton comment={data} />
-      </StyledComment>
-      {replies &&
-        replies.map((reply) => (
-          <ReplyComment>
-            <Comment
-              data={reply}
-              loggedInUser={MOCK_DATA.currentUser}
-            />
-          </ReplyComment>
-        ))}
-    </CommentWrapper>
-  );
-};
-
-const CommentInput = ({ action, currentUser }) => {
-  return (
-    <StyledCommentInput>
-      {currentUser && (
-        <img src={currentUser.image.webp} alt="Profile Picture" />
-      )}
-      <textarea placeholder="Add a comment..." rows={5} />
-      <button>Send</button>
-    </StyledCommentInput>
-  );
-};
-
-const VoteButton = ({ comment }) => {
-  const { score } = comment;
-  return (
-    <StyledVoteButton>
-      {/* Plus button */}
-      <svg width="11" height="11" xmlns="http://www.w3.org/2000/svg">
-        <path d="M6.33 10.896c.137 0 .255-.05.354-.149.1-.1.149-.217.149-.354V7.004h3.315c.136 0 .254-.05.354-.149.099-.1.148-.217.148-.354V5.272a.483.483 0 0 0-.148-.354.483.483 0 0 0-.354-.149H6.833V1.4a.483.483 0 0 0-.149-.354.483.483 0 0 0-.354-.149H4.915a.483.483 0 0 0-.354.149c-.1.1-.149.217-.149.354v3.37H1.08a.483.483 0 0 0-.354.15c-.1.099-.149.217-.149.353v1.23c0 .136.05.254.149.353.1.1.217.149.354.149h3.333v3.39c0 .136.05.254.15.353.098.1.216.149.353.149H6.33Z" />
-      </svg>
-      <h2>{comment.score}</h2>
-      {/* Minus icon */}
-      <svg width="11" height="3" xmlns="http://www.w3.org/2000/svg">
-        <path d="M9.256 2.66c.204 0 .38-.056.53-.167.148-.11.222-.243.222-.396V.722c0-.152-.074-.284-.223-.395a.859.859 0 0 0-.53-.167H.76a.859.859 0 0 0-.53.167C.083.437.009.57.009.722v1.375c0 .153.074.285.223.396a.859.859 0 0 0 .53.167h8.495Z" />
-      </svg>
-    </StyledVoteButton>
-  );
-};
-
 function App() {
   const d = [JSON.parse(JSON.stringify(data))][0];
 
   const [comments, setComments] = useState(d);
   const [count, setCount] = useState(0);
 
+  const addComment = () => {
+    const id = uuidv4();
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <main>
-        <Container data={MOCK_DATA} />
+        <Container data={d} />
       </main>
     </ThemeProvider>
   );

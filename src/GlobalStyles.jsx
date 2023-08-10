@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
     *,
     *::before,
     *::after {
@@ -67,6 +66,15 @@ export const GlobalStyle = createGlobalStyle`
         font-size: 1rem;
         background-color: ${({ theme }) => theme.colors.neutral_800}
     }
+
+    li {
+        list-style-type: none;
+    }
+
+      button:hover {
+    opacity: 0.5;
+    cursor: pointer;
+  }
 
     @media (min-width: 30em) {
         body{
