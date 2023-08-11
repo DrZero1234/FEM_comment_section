@@ -14,7 +14,6 @@ import { StyledVoteButton } from "./components/styled/VoteButton";
 import PlusIcon from "/assets/icon-plus.svg";
 import MinusIcon from "/assets/icon-minus.svg";
 import { StyledContainer } from "./components/styled/Container";
-import { ReplyComment } from "./components/styled/ReplyComment";
 import { CommentWrapper } from "./components/styled/CommentWrapper";
 import { StyledCommentInput } from "./components/styled/CommentInput";
 

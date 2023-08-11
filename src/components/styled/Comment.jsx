@@ -7,9 +7,9 @@ export const StyledComment = styled.div`
     "vote user-data buttons"
     "vote content ."
     ". content .";
-  grid-column: 1/3;
   gap: 1em;
   padding: 1.5em;
+  grid-column: 2 / -1;
   background-color: ${({ theme }) => theme.colors.neutral_1000};
 
   .comment-header {
@@ -77,6 +77,10 @@ export const StyledComment = styled.div`
   }
   .action-btn.delete {
     color: ${({ theme }) => theme.colors.primary_600};
+  }
+
+  &: first-child {
+    grid-column: 1 / -1;
   }
 
   @media (max-width: ${({ theme }) => theme.mobile_size}) {
