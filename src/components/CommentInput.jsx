@@ -1,6 +1,17 @@
 import { StyledCommentInput } from "./styled/CommentInput";
+import { useRef, useState } from "react";
 
 export const CommentInput = ({ action, currentUser, text }) => {
+  const textRef = useRef("");
+  const [currentText, setCurrentText] = useState(
+    textRef.current.value
+  );
+
+  const handleChange = (e) => {
+    setCurrentText(textRef.current.value);
+    console.log(currentText);
+  };
+
   return (
     <StyledCommentInput>
       {currentUser.username ? (
@@ -10,6 +21,8 @@ export const CommentInput = ({ action, currentUser, text }) => {
             placeholder="Add a comment..."
             defaultValue={action === "edit" ? text : ""}
             rows={5}
+            ref={textRef}
+            onChange={(e) => handleChange(e)}
           />
           <button>Send</button>
         </>

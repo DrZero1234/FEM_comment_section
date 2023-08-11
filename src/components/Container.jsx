@@ -2,6 +2,7 @@ import { StyledContainer } from "./styled/Container";
 import { Comment } from "./Comment";
 import { CommentInput } from "./CommentInput";
 import { CommentWrapper } from "./styled/CommentWrapper";
+import { useRef } from "react";
 
 export const Container = ({ data }) => {
   const { comments, currentUser, id } = data;
@@ -18,7 +19,11 @@ export const Container = ({ data }) => {
           </CommentWrapper>
         </>
       ))}
-      <CommentInput action="" currentUser={currentUser} />
+      <CommentInput
+        action="new"
+        currentUser={currentUser}
+        comments={comments}
+      />
     </StyledContainer>
   );
 };

@@ -5,8 +5,4 @@ export const CommentWrapper = styled.div`
   grid-template-columns: 1fr 7fr;
   gap: 1.5em;
   grid-template-rows: auto;
-
-  &: first-child {
-    grid-column: 1 / -1;
-  }
 `;
